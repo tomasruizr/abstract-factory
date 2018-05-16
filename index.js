@@ -1,4 +1,3 @@
-// Me quede en permitir que se pasen parametros sin objeto cuando es un solo prototypo.
 // Terminar los tests
 function sanitizeClassProto(classProto) {
     let proto = {}
@@ -10,15 +9,26 @@ function sanitizeClassProto(classProto) {
     })
     return proto;
 }
-function createNew(constructors, args={}) {
+function createNew(prorotypeList, prototypeConstructorsArgs) {
+    let [constructors, ...args] = arguments;
     let newObj = {};
     let protos = [];
     let newProto = {};
-    if (!Array.isArray(constructors)) constructors = [constructors]
+    if (!Array.isArray(constructors)) {
+        let params = {}
+        params[constructors.name] = args
+        args = params
+        constructors = [constructors]
+    } else {
+        if (args.length > 1){
+            throw new Error('IncorrectParameter: The second parameter should be an Object where each key maps to a prototype name and the values are the parameter to the constructor of the prototype if any')
+        }
+        args = args[0]
+    }
     for (let index = 0; index < constructors.length; index++) {
         if (typeof constructors[index] === 'function'){
             if (/^class/.test(constructors[index].toString())){
-                let classNew = new constructors[index](...args[constructors[index].name])
+                let classNew = args ? new constructors[index](...args[constructors[index].name]) : new constructors[index]()
                 Object.assign(newObj, classNew)
                 protos.push(sanitizeClassProto(constructors[index].prototype))
             } else {

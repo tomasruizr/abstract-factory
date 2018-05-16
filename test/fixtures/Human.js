@@ -1,11 +1,11 @@
 class Human{
     constructor(gender){
-        this.gender = gender;
+        this.gender = gender
     }
     live(){
-        console.log("i'm a living human with gender", this.gender);
+        return "i'm a living human with gender " + this.gender
     }
 
 }
 
-module.exports = Human;
+module.exports = Human
