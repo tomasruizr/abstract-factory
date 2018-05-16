@@ -1,0 +1,27 @@
+{
+  "name": "abstract-factory",
+  "version": "1.0.0",
+  "description": "Super minimal Abstract Factory implementation for Javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --recursive test/**/*.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomasruizr/abstract-factory.git"
+  },
+  "keywords": [
+    "factory",
+    "functional",
+    "prototype"
+  ],
+  "author": "Tomás Ruiz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tomasruizr/abstract-factory/issues"
+  },
+  "homepage": "https://github.com/tomasruizr/abstract-factory#readme",
+  "devDependencies": {
+    "mocha": "^5.1.1"
+  }
+}
