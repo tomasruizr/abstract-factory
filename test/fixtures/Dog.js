@@ -1,10 +1,13 @@
-function Dog(sound = 'guau') {
+function Dog(sound = 'guau', param2, param3, param4) {
     this.sound = sound
+    this.otherParams = param2+param3+param4
 }
 
 Dog.prototype.bark = function() {
-    console.log(this);
-    console.log('I bark: ', this.sound);
+    return 'I bark: ' + this.sound
+}
+Dog.prototype.getOtherParams = function(){
+    return this.otherParams
 }
 
 module.exports = Dog;

@@ -14,11 +14,15 @@ function createNew(prorotypeList, prototypeConstructorsArgs) {
     let newObj = {};
     let protos = [];
     let newProto = {};
-    if (!Array.isArray(constructors)) {
-        let params = {}
-        params[constructors.name] = args
-        args = params
-        constructors = [constructors]
+    constructors = !Array.isArray(constructors) ? [constructors] : constructors
+    if (constructors.length === 1) {
+        if (typeof prototypeConstructorsArgs == 'object' && prototypeConstructorsArgs[constructors[0].name]){
+            args = prototypeConstructorsArgs
+        } else {
+            let params = {}
+            params[constructors[0].name] = args
+            args = params
+        }
     } else {
         if (args.length > 1){
             throw new Error('IncorrectParameter: The second parameter should be an Object where each key maps to a prototype name and the values are the parameter to the constructor of the prototype if any')
